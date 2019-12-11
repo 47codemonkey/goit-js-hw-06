@@ -1,6 +1,8 @@
 'use strict';
 
-import { default as users } from "./users.js";
+import {
+  default as users
+} from "./users.js";
 
 /*
  * Task 01
@@ -94,14 +96,12 @@ console.log(getNamesSortedByFriendsCount(users));
  *  Task 10
  */
 const getSortedUniqueSkills = users => {
-  const allSkills = users.reduce((acc, user) => {
-    acc.push(...user.skills);
-    return acc;
-  }, []);
-  const uniqueSkills = allSkills.filter(function(item, pos) {
-    return allSkills.indexOf(item) == pos;
-  });
-  return uniqueSkills.sort();
-};
 
+  return users.reduce((allSkills, user) => {
+    user.skills.filter(skill =>
+      allSkills.includes(skill) ? false : allSkills.push(skill),
+    );
+    return [...allSkills].sort();
+  }, []);
+};
 console.log(getSortedUniqueSkills(users));
