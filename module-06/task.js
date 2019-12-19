@@ -7,9 +7,10 @@ import {
 /*
  * Task 01
  */
-const getUserNames = users => {
-  return users.map(user => user.name);
-};
+const getUserNames = users =>
+  users.map(({
+    name
+  }) => name);
 
 console.log(getUserNames(users));
 
@@ -63,9 +64,10 @@ console.log(getUsersWithAge(users, 30, 40));
 /*
  *  Task 07
  */
-const calculateTotalBalance = users => {
-  return users.reduce((totalBalance, user) => totalBalance + user.balance, 0);
-};
+const calculateTotalBalance = users =>
+  users.reduce((acc, {
+    balance
+  }) => (acc + balance), 0);
 
 console.log(calculateTotalBalance(users));
 
@@ -95,13 +97,13 @@ console.log(getNamesSortedByFriendsCount(users));
 /*
  *  Task 10
  */
-const getSortedUniqueSkills = users => {
 
-  return users.reduce((allSkills, user) => {
-    user.skills.filter(skill =>
-      allSkills.includes(skill) ? false : allSkills.push(skill),
-    );
-    return [...allSkills].sort();
-  }, []);
+const getSortedUniqueSkills = users => {
+  return users.reduce((res, el) => {
+    return el.skills.reduce((resSkills, skill) => {
+      if (!resSkills.includes(skill)) resSkills.push(skill);
+      return resSkills;
+    }, res);
+  }, []).sort()
 };
-console.log(getSortedUniqueSkills(users));
+console.log(getSortedUniqueSkills(users))
