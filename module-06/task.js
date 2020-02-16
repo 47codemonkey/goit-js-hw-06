@@ -39,6 +39,8 @@ const getInactiveUsers = users => {
   return users.filter(user => user.isActive === false);
 };
 
+// return users.filter(user => !user.isActive) or user.isActive
+
 console.log(getInactiveUsers(users));
 
 /*
