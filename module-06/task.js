@@ -80,6 +80,22 @@ const getUsersWithFriend = (users, friendName) => {
   return users
     .filter(user => user.friends.includes(friendName))
     .map(user => user.name);
+  
+  
+  // or
+  //   users.reduce((emptyArray, user) => {
+
+  //       if(user.friends.includes(friendName)) {
+  //           emptyArray.push(user.name)
+  //       }
+        
+
+  //   return emptyArray;
+  // }, []);
+  
+  // Так будет оптимизированней 
+  
+  
 };
 
 console.log(getUsersWithFriend(users, "Briana Decker"));
